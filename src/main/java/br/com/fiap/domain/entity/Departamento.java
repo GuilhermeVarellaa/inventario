@@ -1,10 +1,19 @@
 package br.com.fiap.domain.entity;
 
-public class Departamento {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "TB_DP", uniqueConstraints = {
+        @UniqueConstraint(name = "UK_NM_DP", columnNames = {"ID_NM"})
+})
+public class Departamento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_DP")
+    @SequenceGenerator(name = "SQ_DP", sequenceName = "SQ_DP")
+    @Column(name = "ID_DP")
     private Long id;
 
-
+    @Column(name = "ID_NM", nullable = false)
     private String nome;
 
     public Departamento() {
